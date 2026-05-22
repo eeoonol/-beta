@@ -107,6 +107,12 @@
       font-size: 13px;
       color: #6b7f95;
     }
+    
+    .preserve-lines {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+    
   </style>
 </head>
 
@@ -126,7 +132,7 @@
 
       <div class="notice-box">
         <strong>오늘의 공지</strong>
-        <p id="noticeText">아직 등록된 공지가 없습니다.</p>
+        <p id="noticeText" class="preserve-lines">아직 등록된 공지가 없습니다.</p>
       </div>
 
       <textarea id="diaryInput" placeholder="오늘 훈련일지를 작성하세요"></textarea>
@@ -149,7 +155,7 @@
     <div class="card">
       <h2>관리자 화면</h2>
 
-      <input id="noticeInput" placeholder="새 공지를 입력하세요" />
+      <textarea id="noticeInput" placeholder="새 공지를 입력하세요"></textarea>
       <button onclick="saveNotice()">공지 등록하기</button>
 
       <h3>제출된 훈련일지</h3>
@@ -205,7 +211,8 @@
       const id = document.getElementById("adminId").value;
       const pw = document.getElementById("adminPw").value;
 
-      if (id === "admin" && pw === "1234") {
+
+      if (id === "yonseilax2020" && pw === "laxyonsei0908") {
         renderDiaries();
         showScreen("adminPage");
       } else {
@@ -238,12 +245,17 @@
       diaries.slice().reverse().forEach(d => {
         const div = document.createElement("div");
         div.className = "entry-box";
+        
         div.innerHTML = `
           <strong>${d.name}</strong>
           <p class="small">${d.date}</p>
-          <p><b>공지:</b> ${d.notice}</p>
-          <p>${d.text}</p>
+          <p class="preserve-lines"><b>공지:</b> ${d.notice}</p>
+          <p class="preserve-lines">${d.text}</p>
         `;
+      
+        
+        
+        
         list.appendChild(div);
       });
     }
