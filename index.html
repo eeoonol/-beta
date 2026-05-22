@@ -113,6 +113,26 @@
       line-height: 1.6;
     }
     
+    .delete-btn {
+      background: #ff6b6b;
+      box-shadow: 0 10px 24px rgba(255, 107, 107, 0.22);
+      padding: 12px;
+      font-size: 14px;
+    }
+
+select {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  padding: 16px;
+  margin: 10px 0;
+  font-size: 16px;
+  background: rgba(235, 245, 255, 0.9);
+  color: #16324f;
+}
+    
+    
   </style>
 </head>
 
@@ -150,20 +170,31 @@
       <button class="sub-btn" onclick="showScreen('home')">돌아가기</button>
     </div>
   </section>
-
+  
+  
+  
   <section id="adminPage" class="screen">
     <div class="card">
       <h2>관리자 화면</h2>
 
-      <textarea id="noticeInput" placeholder="새 공지를 입력하세요"></textarea>
+      <input id="noticeTitleInput" placeholder="공지 제목을 입력하세요" />
+      <textarea id="noticeInput" placeholder="공지 내용을 입력하세요"></textarea>
       <button onclick="saveNotice()">공지 등록하기</button>
-
+  
       <h3>제출된 훈련일지</h3>
+  
+      <select id="noticeFilter" onchange="renderDiaries()">
+        <option value="">공지를 선택하세요</option>
+      </select>
+  
       <div id="diaryList" class="admin-list"></div>
-
+  
       <button class="sub-btn" onclick="showScreen('home')">로그아웃</button>
     </div>
   </section>
+  
+  
+  
 
   <script>
     let currentUser = "";
